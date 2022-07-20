@@ -3,6 +3,13 @@ from Bio import SeqIO
 import re
 
 
+# The script extracts FASTA sequences from multifasta file created with StringTie (hence 'MSTRG' IDs).
+# Standard codon table is used.
+# Sequences with ORF longer than 100 aa are discarded as well as sequences with name starting with 'ENS' (Ensembl IDs).
+# The script searches ORF in 3 possible translation frames.
+# Reverse frames not required since StringTie provides only forward direction.
+
+
 # Provide FASTA file input as first argument.
 # Provide FASTA file name as second argument.
 
