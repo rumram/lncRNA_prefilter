@@ -1,6 +1,10 @@
+import sys
 from Bio import SeqIO
 import re
 
+
+# Provide FASTA file input as first argument.
+# Provide FASTA file name as second argument.
 
 def translation(nucleotide_seq):
     # Translate nucleotide codon to amino acid
@@ -37,7 +41,7 @@ def translation(nucleotide_seq):
 
 names = []
 
-with open("test_set.txt") as hand:
+with open(sys.argv[1]) as hand:
     for seqid in SeqIO.parse(hand, "fasta"):
         if seqid.name.startswith("MSTRG"):
             for i in range(3):
@@ -47,9 +51,9 @@ with open("test_set.txt") as hand:
     dlist = list(dset)
 
 filtered_seqs = []
-with open("test_set.txt") as hand:
+with open(sys.argv[1]) as hand:
     for seqid in SeqIO.parse(hand, "fasta"):
         if seqid.name not in dlist and not seqid.name.startswith("ENS"):
             filtered_seqs.append(seqid)
 
-SeqIO.write(filtered_seqs, "try_test.fa", "fasta")
+SeqIO.write(filtered_seqs, sys.argv[2], "fasta")
